@@ -1,18 +1,19 @@
 import React, {useState} from 'react';
 import './App.css';
 import InputForm from "./components/InputForm";
-import Activity from "./models/Activity";
-import ActivityList from"./components/ActivityList";
+import {PastActivity} from "./models/Activity";
+import ActivityList from "./components/ActivityList";
 
 
 function App() {
 
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const [activities, setActivities] = useState<PastActivity[]>([]);
+
   console.log(activities)
 
-  const addActivity = (activity: string, startTime: string, endTime: string) => {
+  const addActivity = (activityName: string, date: string, startTime: string, endTime: string, location?: string, notes?: string, ) => {
     console.log("Made it to App");
-    setActivities([...activities, {activity, startTime, endTime}])
+    setActivities([...activities, {activityName, location, date, startTime, endTime, notes}])
   }
   return (
     <div className="App">
