@@ -1,29 +1,31 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import './App.css';
 import ActivityInputForm from "./components/ActivityInputForm";
-import {Activity} from "./models/Activity";
+import { Activity } from "./models/Activity";
 import ActivityList from "./components/ActivityList";
 import Calendar from "./components/Calendar";
+import { ActivityContext } from "./components/ActivityProvider"
+import {ActivityContextType} from "./models/ActivityContext"
 
 
 function App() {
 
-  const [activities, setActivities] = useState<Activity[]>([]);
+  const {activities, setActivities} = useContext(ActivityContext) as ActivityContextType
 
   console.log(activities)
 
-  const addActivity = (activityName: string, date: string, startTime: string, endTime: string, location?: string, notes?: string, ) => {
+  const addActivity = (activityName: string, date: string, startTime: string, endTime: string, location?: string, notes?: string,) => {
     console.log("Made it to App");
-    setActivities([...activities, {activityName, location, date, startTime, endTime, notes}])
+    setActivities([...activities, { activityName, location, date, startTime, endTime, notes }])
   }
 
   return (
-    <div className="App">
-      <h1>Calendar App To Remember What You Did!</h1>
-      <ActivityInputForm onAddActivity={addActivity} />
-      <ActivityList activities={activities} />
-      <Calendar activities={activities}/>
-    </div>
+      <div className="App">
+        <h1>Calendar App To Remember What You Did!</h1>
+        <ActivityInputForm onAddActivity={addActivity} />
+        <ActivityList />
+        <Calendar />
+      </div>
   );
 }
 
