@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import './App.css';
+import './styling/App.css';
 import ActivityInputForm from "./components/ActivityInputForm";
 import { Activity } from "./models/Activity";
 import ActivityList from "./components/ActivityList";
@@ -11,8 +11,6 @@ import {ActivityContextType} from "./models/ActivityContext"
 function App() {
 
   const {activities, setActivities} = useContext(ActivityContext) as ActivityContextType
-
-  console.log(activities)
 
   const addActivity = (activityName: string, date: string, startTime: string, endTime: string, location?: string, notes?: string,) => {
     console.log("Made it to App");
