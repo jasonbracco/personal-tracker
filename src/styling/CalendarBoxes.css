@@ -1,0 +1,19 @@
+.calendar-container {
+    margin-top: 30px;
+    margin-left: 75px;
+    margin-right: 75px;
+}
+
+.calendar-grid{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Seven columns for each day of the week */
+    gap: 0px;
+
+}
+
+.calendar-day{
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    height: 100px;
+}
