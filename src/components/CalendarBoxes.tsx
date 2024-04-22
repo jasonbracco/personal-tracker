@@ -8,6 +8,7 @@ import CalendarHeaders from "./CalendarHeaders"
 interface CalendarBoxesProps {
     currentMonthActivities: Activity[];
     daysInSelectedMonth: number;
+    firstWeekdayOfCurrentMonth: string;
 };
 
 
@@ -15,8 +16,24 @@ function CalendarBoxes(props: CalendarBoxesProps){
 
     const currentActivities = props.currentMonthActivities;
     const currentDays = props.daysInSelectedMonth;
+    const firstWeekdayOfCurrentMonth = props.firstWeekdayOfCurrentMonth
 
     const [currentDayActivities, setCurrentDayActivities] = useState<DayActivities[]>([])
+    const [daysToDelay, setDaysToDelay] = useState<string[]>([])
+
+    useEffect(() => {
+        const daysToDelayArray: string[] = []
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        for(let day of daysOfWeek){
+            if (day !== firstWeekdayOfCurrentMonth){
+                daysToDelayArray.push("-")
+            } else {
+                break
+            }
+        }
+        setDaysToDelay(daysToDelayArray)
+        return undefined
+    }, [currentDays])
 
     useEffect(() => {
         const daysAndActivitiesArray:DayActivities[]= []
@@ -40,9 +57,15 @@ function CalendarBoxes(props: CalendarBoxesProps){
             </ul>
             <CalendarHeaders />
             <div className="calendar-grid">
+                {/* {Array(firstWeekdayOfCurrentMonth === 'Sunday' ? 0 : daysOfWeek.indexOf(firstWeekdayOfCurrentMonth)).fill(null).map((_, index) => (
+                    <div key={index} className="calendar-day"></div>
+                ))} */}
+                {daysToDelay.map((day, index) => {
+                    return <div key={index} className="calendar-day"></div>
+                })}
                 {currentDayActivities.map((dayActivityObject) => {
                     return <div className="calendar-day" key={dayActivityObject.day}>
-                        <CalendarDay dayActivityObject={dayActivityObject}/>
+                        <CalendarDay dayActivityObject={dayActivityObject} firstWeekdayOfCurrentMonth={firstWeekdayOfCurrentMonth}/>
                     </div>
                 })}
             </div>

@@ -14,7 +14,7 @@ function Calendar() {
     const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());
     const [daysInSelectedMonth, setDaysInSelectedMonth] = useState<number>(0); //Need to set default number so TS knows this will never be undefined
     const [currentMonthActivities, setCurrentMonthActivities] = useState<Activity[]>([])
-    const [firstDayOfCurrentMonth, setFirstDayOfCurrentMonth] = useState<string>()
+    const [firstWeekdayOfCurrentMonth, setFirstWeekdayOfCurrentMonth] = useState<string>("")
 
     function updateMonthForward() {
         const currentMonthString = selectedMonth;
@@ -58,7 +58,7 @@ function Calendar() {
         const zeroIndexMonth = month - 1
         const dateString = new Date(selectedYear, zeroIndexMonth, 1);
         const firstDayOfMonthString = dateString.toLocaleDateString('en-US', { weekday: 'long'});
-        setFirstDayOfCurrentMonth(firstDayOfMonthString)
+        setFirstWeekdayOfCurrentMonth(firstDayOfMonthString)
     }
 
     //Filters out for activities in the current month and year
@@ -96,7 +96,6 @@ function Calendar() {
         startingDayOfTheMonth(currentDate.getMonth() + 1)
         const lastDayOfMonth = currentDate.getDate();
         setDaysInSelectedMonth(lastDayOfMonth);
-
     }, [])
 
     return (
@@ -108,8 +107,10 @@ function Calendar() {
             </div>
             Days In Current Month: {daysInSelectedMonth}
             <br></br>
-            First Day of {selectedMonth} {selectedYear}: {firstDayOfCurrentMonth}
-            <CalendarBoxes currentMonthActivities={currentMonthActivities} daysInSelectedMonth={daysInSelectedMonth}/>
+            First Day of {selectedMonth} {selectedYear}: {firstWeekdayOfCurrentMonth}
+            <CalendarBoxes currentMonthActivities={currentMonthActivities} daysInSelectedMonth={daysInSelectedMonth} 
+                firstWeekdayOfCurrentMonth={firstWeekdayOfCurrentMonth}
+            />
         </div>
     )
 }

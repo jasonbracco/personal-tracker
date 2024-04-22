@@ -4,19 +4,25 @@ import { DayActivities } from "../models/DayActivities"
 
 
 interface CalendarDayProps {
-    dayActivityObject: DayActivities
+    dayActivityObject: DayActivities;
+    firstWeekdayOfCurrentMonth: string;
 }
 
 
 function CalendarDay(props: CalendarDayProps){
 
     const thisDaysActivities = props.dayActivityObject.activities;
+    const day = props.dayActivityObject.day
+    console.log(props)
     
     return (
         <div>
+            {day}
             <ul>
-                {thisDaysActivities.map((activity, index) => {
-                    return <li key={index}>{activity.activityName}</li>
+                {thisDaysActivities.map((activity, index) => {        
+                    return <div>
+                        <li key={index}>{activity.activityName}</li>
+                    </div>
                 })}
             </ul>
         </div>
