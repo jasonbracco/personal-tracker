@@ -8,12 +8,12 @@ import { ActivityContextType } from "../models/ActivityContext";
 function Calendar() {
 
     const { activities, setActivities } = useContext(ActivityContext) as ActivityContextType
-    console.log(activities)
 
     const [selectedMonth, setSelectedMonth] = useState<string>(" ");
     const [selectedYear, setSelectedYear] = useState<number>();
     const [daysInSelectedMonth, setDaysInSelectedMonth] = useState<number>(0); //Need to set default number so TS knows this will never be undefined
     const [currentMonthActivities, setCurrentMonthActivities] = useState<Activity[]>([])
+    console.log(currentMonthActivities)
 
     function updateMonthForward() {
         const currentMonthString = selectedMonth;
@@ -54,7 +54,10 @@ function Calendar() {
     useEffect(() => {
         const thisMonthsActivities = activities.filter((activity: Activity) => {
             const activityDateString = activity.date
-            const segmentedDateParts = activityDateString.split("/")
+            const segmentedDayOfWeek = activityDateString.split(",")
+            console.log(segmentedDayOfWeek)
+            const segmentedDateParts = segmentedDayOfWeek[1].split("/")
+            console.log(segmentedDateParts)
             const activityMonth = parseInt(segmentedDateParts[0])
             const activityYear = parseInt(segmentedDateParts[2])
             //Check if month matches current month

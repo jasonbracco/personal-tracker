@@ -11,6 +11,7 @@ interface CalendarDayProps {
 function CalendarDay(props: CalendarDayProps){
 
     const thisDaysActivities = props.dayActivityObject.activities;
+    console.log(thisDaysActivities)
     
     return (
         <div>

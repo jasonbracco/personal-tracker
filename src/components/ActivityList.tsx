@@ -6,6 +6,7 @@ import {ActivityContextType} from "../models/ActivityContext"
 function ActivityList() {
 
     const {activities, setActivities} = useContext(ActivityContext) as ActivityContextType
+    console.log(activities)
 
     return (
         <div>

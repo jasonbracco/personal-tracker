@@ -13,15 +13,11 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
     const endTimeInputRef = useRef<HTMLInputElement>(null); // Check docs for this, when DOM initially loads this doesnt exist
     const notesInputRef = useRef<HTMLInputElement>(null); // Check docs for this, when DOM initially loads this doesnt exist
 
-    console.log(dateInputRef)
-
-
     function handleNewActivitySubmit(e: React.FormEvent){
         e.preventDefault();
         const newActivity = activityNameInputRef.current!.value;
         const newLocation = locationInputRef.current!.value;
-        const newDate = dateInputRef.current!.value
-        console.log(dateInputRef.current!.value)
+        const newDate = dateInputRef.current!.value //gets date as a string, but as yyyy-mm-dd format 
         const newStartTime = startTimeInputRef.current!.value;
         const newEndTime = endTimeInputRef.current!.value;
         const newNotes = notesInputRef.current!.value;
@@ -30,21 +26,14 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
             window.alert('Fill out all required fields.');
             return;
         }
-
+         // Getting date to mm/dd/yyyy format
         const [year, month, day] = newDate.split("-");
-        const formattedDate = `${month}/${day}/${year}`
+        const dayOfTheWeek = new Date(newDate).toLocaleDateString('en-US', { weekday: 'long' });
+        const monthDayYear = `${month}/${day}/${year}`
+        const formattedDate = `${dayOfTheWeek},${monthDayYear}`
 
-        // if (newDate !== null) {
-        //     console.log(newDate)
-        //     const formattedDate = newDate.toLocaleDateString('en-US', {year: "numeric", month: "numeric", day: "numeric"})
-        //     console.log(formattedDate)
-            onAddActivity(newActivity, formattedDate, newStartTime, newEndTime, newLocation, newNotes);
-        // } else {
-        //     window.alert('Select a Valid Date.');
-        //     return;
-        // }
+        onAddActivity(newActivity, formattedDate, newStartTime, newEndTime, newLocation, newNotes);
 
-        
         activityNameInputRef.current!.value = ""
         startTimeInputRef.current!.value = ""
         endTimeInputRef.current!.value = ""
