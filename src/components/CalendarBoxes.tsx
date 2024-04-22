@@ -3,6 +3,7 @@ import "../styling/CalendarBoxes.css";
 import { Activity } from "../models/Activity";
 import { DayActivities } from "../models/DayActivities"
 import CalendarDay from "./CalendarDay";
+import CalendarHeaders from "./CalendarHeaders"
 
 interface CalendarBoxesProps {
     currentMonthActivities: Activity[];
@@ -37,6 +38,7 @@ function CalendarBoxes(props: CalendarBoxesProps){
                     return <li key={index}>{activity.activityName} on {activity.date} from {activity.startTime} - {activity.endTime}</li>
                 })}
             </ul>
+            <CalendarHeaders />
             <div className="calendar-grid">
                 {currentDayActivities.map((dayActivityObject) => {
                     return <div className="calendar-day" key={dayActivityObject.day}>
