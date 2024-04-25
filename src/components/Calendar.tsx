@@ -9,6 +9,7 @@ import { start } from "repl";
 function Calendar() {
 
     const { activities, setActivities } = useContext(ActivityContext) as ActivityContextType
+    console.log(activities)
 
     const [selectedMonth, setSelectedMonth] = useState<string>(" ");
     const [selectedYear, setSelectedYear] = useState<number>(new Date().getFullYear());

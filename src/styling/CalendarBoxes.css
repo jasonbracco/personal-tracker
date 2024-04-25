@@ -30,7 +30,6 @@
 }
 
 .activity-block {
-    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -38,5 +37,9 @@
     border: 1px solid #ccc;
     padding: 5px;
     overflow: hidden; /* Ensure activity content doesn't overflow */
+}
+
+.activity-block:hover {
+    background-color: rgb(85, 165, 227);
 }
 

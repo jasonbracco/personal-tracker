@@ -12,7 +12,7 @@ function ActivityList() {
             <h1>Activity List</h1>
             <ul>
                 {activities.map((activity) => {
-                    return <li key={activity.activityName}>{activity.activityName} on {activity.date} from {activity.startTime} - {activity.endTime}</li>
+                    return <li key={Math.random()}>{activity.activityName} on {activity.date} from {activity.startTime} - {activity.endTime}</li>
                 })}
             </ul>
         </div>
