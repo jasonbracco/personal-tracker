@@ -4,6 +4,8 @@ export interface Activity {
     location?: string;
     startTime: string;
     endTime: string;
+    lengthInHours: number;
+    lengthInMinutes: number;
     notes?: string;
 }
 

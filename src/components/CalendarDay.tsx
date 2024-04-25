@@ -12,8 +12,9 @@ interface CalendarDayProps {
 function CalendarDay(props: CalendarDayProps){
 
     const thisDaysActivities = props.dayActivityObject.activities;
-    // console.log(thisDaysActivities)
     const day = props.dayActivityObject.day
+
+
         
     return (
         <div>
@@ -23,7 +24,7 @@ function CalendarDay(props: CalendarDayProps){
             <div className="activity-blocks">
                 {thisDaysActivities.map((activity, index) => (
                     <div key={Math.random()} className="activity-block">
-                        {activity.activityName}: {activity.startTime} - {activity.endTime}
+                        {activity.activityName}: {activity.lengthInHours}: {activity.lengthInMinutes}
                     </div>
                 ))}
             </div>

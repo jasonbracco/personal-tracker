@@ -13,8 +13,8 @@ function App() {
   const {activities, setActivities} = useContext(ActivityContext) as ActivityContextType
   console.log(activities)
 
-  const addActivity = (activityName: string, date: string, startTime: string, endTime: string, location?: string, notes?: string,) => {
-    setActivities([...activities, { activityName, location, date, startTime, endTime, notes }])
+  const addActivity = (activityName: string, date: string, startTime: string, endTime: string, lengthInHours: number, lengthInMinutes:number, location?: string, notes?: string,) => {
+    setActivities([...activities, { activityName, location, date, startTime, endTime, lengthInHours, lengthInMinutes, notes }])
   }
 
   return (
