@@ -24,10 +24,7 @@ function CalendarBoxes(props: CalendarBoxesProps){
     useEffect(() => {
         const daysToDelayArray: string[] = []
         const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        console.log(firstWeekdayOfCurrentMonth)
         for(let day of daysOfWeek){
-            console.log(day)
-            console.log(firstWeekdayOfCurrentMonth)
             if (day !== firstWeekdayOfCurrentMonth){
                 daysToDelayArray.push("-")
             } else {
@@ -55,14 +52,11 @@ function CalendarBoxes(props: CalendarBoxesProps){
         <div className="calendar-container">
             <CalendarHeaders />
             <div className="calendar-grid">
-                {/* {Array(firstWeekdayOfCurrentMonth === 'Sunday' ? 0 : daysOfWeek.indexOf(firstWeekdayOfCurrentMonth)).fill(null).map((_, index) => (
-                    <div key={index} className="calendar-day"></div>
-                ))} */}
-                {daysToDelay.map((day, index) => {
-                    return <div key={index} className="calendar-day"></div>
+                {daysToDelay.map(() => {
+                    return <div key={Math.random()} className="calendar-day"></div>
                 })}
                 {currentDayActivities.map((dayActivityObject) => {
-                    return <div className="calendar-day" key={dayActivityObject.day}>
+                    return <div className="calendar-day" key={Math.random()}>
                         <CalendarDay dayActivityObject={dayActivityObject} firstWeekdayOfCurrentMonth={firstWeekdayOfCurrentMonth}/>
                     </div>
                 })}

@@ -4,16 +4,39 @@
     margin-right: 75px;
 }
 
-.calendar-grid{
+.calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 0px;
 
 }
 
-.calendar-day{
+.calendar-day {
     border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    height: 100px;
+    padding: 2px;
+    display:grid;
+    position: relative;
+    min-height: 150px;
 }
+
+.day-header {
+    text-align: center;
+    border-bottom: 1px solid #ddd; /* Add bottom border to separate time slots */
+    background-color: antiquewhite;
+}
+
+.activity-blocks {
+    position: relative;
+}
+
+.activity-block {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: lightblue; /* Example background color for activity slots */
+    border: 1px solid #ccc;
+    padding: 5px;
+    overflow: hidden; /* Ensure activity content doesn't overflow */
+}
+

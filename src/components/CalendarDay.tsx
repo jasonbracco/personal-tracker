@@ -1,4 +1,5 @@
 import React from "react";
+import { Activity } from "../models/Activity"
 import { DayActivities } from "../models/DayActivities"
 
 
@@ -12,17 +13,19 @@ function CalendarDay(props: CalendarDayProps){
 
     const thisDaysActivities = props.dayActivityObject.activities;
     const day = props.dayActivityObject.day
-    
+        
     return (
         <div>
-            {day}
-            <ul>
-                {thisDaysActivities.map((activity, index) => {        
-                    return <div key={index} className="calendar-event">
+            <div className="day-header">
+                {day}
+            </div>
+            <div className="activity-blocks">
+                {thisDaysActivities.map((activity, index) => (
+                    <div key={Math.random()} className="activity-block">
                         {activity.activityName}
                     </div>
-                })}
-            </ul>
+                ))}
+            </div>
         </div>
     )
 }

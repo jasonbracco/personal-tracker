@@ -28,9 +28,12 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
         }
          // Getting date to mm/dd/yyyy format
         const [year, month, day] = newDate.split("-");
-        const dayOfTheWeek = new Date(newDate).toLocaleDateString('en-US', { weekday: 'long' });
+        const dayOfTheWeekIndex = new Date(`${year}-${month}-${day}`).getDay() + 1;
+        console.log(dayOfTheWeekIndex)
+        const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const dayOfTheWeek = daysOfWeek[dayOfTheWeekIndex];
         const monthDayYear = `${month}/${day}/${year}`
-        const formattedDate = `${dayOfTheWeek},${monthDayYear}`
+        const formattedDate = `${dayOfTheWeek}, ${monthDayYear}`
 
         onAddActivity(newActivity, formattedDate, newStartTime, newEndTime, newLocation, newNotes);
 

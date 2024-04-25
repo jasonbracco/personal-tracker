@@ -11,9 +11,9 @@ import {ActivityContextType} from "./models/ActivityContext"
 function App() {
 
   const {activities, setActivities} = useContext(ActivityContext) as ActivityContextType
+  console.log(activities)
 
   const addActivity = (activityName: string, date: string, startTime: string, endTime: string, location?: string, notes?: string,) => {
-    console.log("Made it to App");
     setActivities([...activities, { activityName, location, date, startTime, endTime, notes }])
   }
 
