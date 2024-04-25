@@ -13,10 +13,8 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
     const [endTime, setEndTime] = useState<string>("12:00 AM");
     const [notes, setNotes] = useState<string>("");
     const [lengthInHours, setLengthInHours] = useState<number>(0);
-    console.log(lengthInHours)
     const [lengthInMinutes, setLengthInMinutes] = useState<number>(0);
-    (console.log(lengthInMinutes))
-
+    const [activityType, setActivityType] = useState<string>("Select");
 
     const timeOptions: string[] = [];
     for (let hour = 0; hour < 24; hour++) {
@@ -25,6 +23,15 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
             timeOptions.push(time);
         }
     }
+
+    const activityCategories = [
+        "Leisure",
+        "Sports/Athletics",
+        "Education",
+        "Professional",
+        "Social",
+        "Food and Drink",
+    ]
 
     function calculateTime(startTime: string, endTime: string) {
         const [startHours, startMinutes] = startTime.split(":").map(num => parseInt(num, 10))
@@ -46,7 +53,7 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
     function handleNewActivitySubmit(e: React.FormEvent){
         e.preventDefault();
 
-        if (!activityName || !startTime || !endTime || !date) {
+        if (!activityName || !startTime || !endTime || !date || activityType === "Select") {
             window.alert('Fill out all required fields.');
             return;
         }
@@ -63,11 +70,12 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
         setActivityName("");
         setLocation("");
         setDate("");
-        setStartTime("12:00 AM");
-        setEndTime("12:00 AM");
+        setStartTime("0:00");
+        setEndTime("0:00");
         setNotes("");
         setLengthInHours(0)
         setLengthInMinutes(0)
+        setActivityType("")
     }
 
     useEffect(() => {
@@ -88,6 +96,12 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
                 <select value={endTime} onChange={(e) => setEndTime(e.target.value)}>
                     {timeOptions.map((time, index) => (
                         <option key={index} value={time}>{time}</option>
+                    ))}
+                </select>
+                <select onChange={(e) => (setActivityType(e.target.value))}>
+                <option value="Select">Select</option>
+                    {activityCategories.map((activity) => (
+                        <option key={Math.random()} value={activity}>{activity}</option>
                     ))}
                 </select>
                 <input type="text" placeholder="Notes (Optional)" value={notes} onChange={(e) => setNotes(e.target.value)}/>

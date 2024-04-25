@@ -1,5 +1,4 @@
 import React from "react";
-import { Activity } from "../models/Activity"
 import { DayActivities } from "../models/DayActivities"
 
 
