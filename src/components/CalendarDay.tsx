@@ -23,7 +23,7 @@ function CalendarDay(props: CalendarDayProps){
             <div className="activity-blocks">
                 {thisDaysActivities.map((activity, index) => (
                     <div key={Math.random()} className="activity-block">
-                        {activity.activityName}: {activity.lengthInHours}: {activity.lengthInMinutes}
+                        {activity.activityName}
                     </div>
                 ))}
             </div>

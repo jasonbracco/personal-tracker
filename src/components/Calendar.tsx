@@ -107,7 +107,6 @@ function Calendar() {
                 <button onClick={updateMonthForward}>Next</button>
             </div>
             <br></br>
-            First Day of {selectedMonth} {selectedYear}: {firstWeekdayOfCurrentMonth}
             <CalendarBoxes currentMonthActivities={currentMonthActivities} daysInSelectedMonth={daysInSelectedMonth} 
                 firstWeekdayOfCurrentMonth={firstWeekdayOfCurrentMonth}
             />

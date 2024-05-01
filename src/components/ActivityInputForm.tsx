@@ -15,6 +15,7 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
     const [lengthInHours, setLengthInHours] = useState<number>(0);
     const [lengthInMinutes, setLengthInMinutes] = useState<number>(0);
     const [activityType, setActivityType] = useState<string>("Select");
+    console.log(activityType)
 
     const timeOptions: string[] = [];
     for (let hour = 0; hour < 24; hour++) {
@@ -88,17 +89,19 @@ function ActivityInputForm({ onAddActivity }: ActivityFormProps){
                 <input type="text" placeholder="Activity" value={activityName} onChange={(e) => setActivityName(e.target.value)}/>
                 <input type="text" placeholder="Location (Optional)" value={location} onChange={(e) => setLocation(e.target.value)}/>
                 <input type="date" value={date} onChange={(e) => setDate(e.target.value)}/>
+                <label>Start Time (24hr)</label>
                 <select value={startTime} onChange={(e) => setStartTime(e.target.value)}>
                     {timeOptions.map((time, index) => (
                         <option key={index} value={time}>{time}</option>
                     ))}
                 </select>
+                <label>End Time (24hr)</label>
                 <select value={endTime} onChange={(e) => setEndTime(e.target.value)}>
                     {timeOptions.map((time, index) => (
                         <option key={index} value={time}>{time}</option>
                     ))}
                 </select>
-                <select onChange={(e) => (setActivityType(e.target.value))}>
+                <select value={activityType} onChange={(e) => (setActivityType(e.target.value))}>
                 <option value="Select">Select</option>
                     {activityCategories.map((activity) => (
                         <option key={Math.random()} value={activity}>{activity}</option>
